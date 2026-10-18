@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import { start } from './lib/server.mjs';
 import { run, validate } from './core.mjs';
+import { product } from './project.mjs';
 export * from './core.mjs';
 export const spec = { ...{
   "slug": "column",
@@ -34,8 +35,8 @@ export const spec = { ...{
     }
   },
   "changed": "All occurrences of a repeated key are held for review. Blank fields preserve prior values. Quoted CSV fields and malformed rows are handled explicitly.",
-  "limits": "No CRM writes, identity inference, conflict resolution UI or production import export yet. CSV row numbers refer to logical records.",
-  "version": "0.2.0",
+  "limits": "No CRM writes, identity inference, external-system sync or full conflict-resolution UI. Merged records are a downloadable local file. CSV row numbers refer to logical records.",
+  "version": "0.3.0",
   "inputSchema": {
     "type": "object",
     "required": [
@@ -54,6 +55,6 @@ export const spec = { ...{
       }
     }
   }
-}, run, validate };
+}, run, validate, product };
 if (process.argv[1] === fileURLToPath(import.meta.url)) start(spec);
 
